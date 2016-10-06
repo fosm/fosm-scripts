@@ -1,0 +1,13 @@
+source profile
+cd $zappy/data
+$mupip set -replication=on -journal="before_images,filename=../journal/c.mjl" -file c.dat
+$mupip set -replication=on -journal="before_images,filename=../journal/e.mjl" -file e.dat
+$mupip set -replication=on -journal="before_images,filename=../journal/export.mjl" -file export.dat
+$mupip set -replication=on -journal="before_images,filename=../journal/nodeVersion.mjl" -file nodeVersion.dat
+$mupip set -replication=on -journal="before_images,filename=../journal/nodex.mjl" -file nodex.dat
+$mupip set -replication=on -journal="before_images,filename=../journal/relation.mjl" -file relation.dat
+$mupip set -replication=on -journal="before_images,filename=../journal/way.mjl" -file way.dat
+$mupip set -replication=on -journal="before_images,filename=../journal/waytag.mjl" -file waytag.dat
+$mupip set -replication=on -journal="before_images,filename=../journal/wayVersion.mjl" -file wayVersion.dat
+$mupip set -replication=on -journal="before_images,filename=../journal/wayx.mjl" -file wayx.dat
+$mupip set -replication=on -journal="before_images,filename=../journal/xapi.mjl" -file xapi.dat

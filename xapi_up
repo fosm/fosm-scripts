@@ -1,0 +1,5 @@
+# Start up a xapi daemon
+source /xapi/scripts/profile
+export GTMCI=/xapi/scripts/xapi.ci
+cd /xapi/data
+(/xapi/scripts/xapid </dev/null >/dev/null 2>>xapid.err &)

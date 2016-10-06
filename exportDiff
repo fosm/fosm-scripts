@@ -1,0 +1,4 @@
+source profile
+source $zappy/fosm.conf
+cd $zappy/data
+$gtmrun ^exportDiff fosmExport

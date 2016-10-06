@@ -1,0 +1,59 @@
+		o socket:(:port:"PSTA"):10 e  d logMessage("Cannot open socket",0,port) s stop=1 q
+		          ^-----
+		At column 12, line 55, source module /xapi/scripts/serverLink.m
+%GTM-E-DEVPARUNK, Deviceparameter unknown
+		. u socket:"PSTA"
+		           ^-----
+		At column 13, line 59, source module /xapi/scripts/serverLink.m
+%GTM-E-DEVPARUNK, Deviceparameter unknown
+		. j sub01^serverLink(port,logLevel):(:4:socket:socket):10 e  d logMessage("Cannot spawn sub-process",1,port) q
+		                                     ^-----
+		At column 39, line 62, source module /xapi/scripts/serverLink.m
+%GTM-E-JOBPARUNK, Job parameter unknown
+		o device:("TCP":"":port):10 e  d logMessage("Cannot open socket",0,port) s stop=1 q
+		          ^-----
+		At column 12, line 75, source module /xapi/scripts/serverLink.m
+%GTM-E-DEVPARUNK, Deviceparameter unknown
+		. s socket=$zsocket(device)
+		            ^-----
+		At column 14, line 82, source module /xapi/scripts/serverLink.m
+%GTM-E-INVFCN, Invalid function name
+		. u device:(::::::socket) ; Detach socket
+		            ^-----
+		At column 14, line 84, source module /xapi/scripts/serverLink.m
+%GTM-E-DEVPARUNK, Deviceparameter unknown
+		. c device:socket
+		                 ^-----
+		At column 19, line 86, source module /xapi/scripts/serverLink.m
+%GTM-E-DEVPARVALREQ, A value is required for this device parameter
+		s $et="i $estack=0 znspace """_$znspace_""" g error^serverLink"
+		                                ^-----
+		At column 34, line 184, source module /xapi/scripts/serverLink.m
+%GTM-E-INVSVN, Invalid special variable name
+		u socket:(::"STP")
+		          ^-----
+		At column 12, line 190, source module /xapi/scripts/serverLink.m
+%GTM-E-DEVPARUNK, Deviceparameter unknown
+		. u socket:(::"STP")
+		            ^-----
+		At column 14, line 200, source module /xapi/scripts/serverLink.m
+%GTM-E-DEVPARUNK, Deviceparameter unknown
+		s ucivol=$zu(0)
+		          ^-----
+		At column 12, line 230, source module /xapi/scripts/serverLink.m
+%GTM-E-INVFCN, Invalid function name
+		s ucivolno=$zu(uci,vol)
+		            ^-----
+		At column 14, line 233, source module /xapi/scripts/serverLink.m
+%GTM-E-INVFCN, Invalid function name
+		o device:("TCP":""::::socket) ; Attach socket
+		          ^-----
+		At column 12, line 241, source module /xapi/scripts/serverLink.m
+%GTM-E-DEVPARUNK, Deviceparameter unknown
+		u device:(:::$c(10))
+		          ^-----
+		At column 12, line 287, source module /xapi/scripts/serverLink.m
+%GTM-E-DEVPARUNK, Deviceparameter unknown
+150374122,start+7^serverLink,%GTM-E-ZGBLDIRACC, Cannot access global directory /data/xapi/scripts/xapi.gld.  Cannot continue.,%SYSTEM-E-ENO2, No such file or directory
+-sh: /xapi/scripts/xapid: No such file or directory
+-sh: /xapi/scripts/xapid: No such file or directory

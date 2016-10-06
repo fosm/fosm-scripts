@@ -1,0 +1,4 @@
+source profile
+source $zappy/fosm.conf
+cd $zappy/data
+$mupip replicate -source -shutdown -time=0

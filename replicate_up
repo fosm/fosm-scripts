@@ -1,0 +1,4 @@
+source profile
+source $zappy/fosm.conf
+cd $zappy/data
+$mupip replicate -source -start -secondary=${secondaryInstanceAddress} -log=$zappy/log/${secondaryInstanceName}.log -instsec=${secondaryInstanceName}.repl -rootprimary -buff=256000000 -connectparams=5,500,30,600,600,30
