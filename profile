@@ -12,3 +12,6 @@ dse="$gtm_dist/dse"; export dse
 PATH=$PATH:$zappy/scripts:$gtm_dist
 gtm_repl_instance="fosm02.repl";export gtm_repl_instance
 gtm_repl_instname="fosm02";export gtm_repl_instname
+export gtm_access_ci="$zappy/scripts/gtm_access.ci"
+export gtm_data_dir="$zappy/data"
+

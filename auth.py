@@ -28,5 +28,7 @@ if __name__=="__main__":
 	password = raw_input()
 
 	db.execute('d loginLowLevel^user("{0}","{1}")'.format(username, password))
-	db.execute('zwr %sess')
-	
+
+	print "authenticated=",db.get('%sess("authenticated")')
+	print "uid=",db.get('%sess("uid")')
+
