@@ -162,7 +162,6 @@ error(errors,field,message)	; Add an error message to the errors object
 	s errors(errors,"message")=message
 	q
 	
-	
 login	; Public ; Login
 	;
 	; If itis not a POST then display a blank login form
@@ -173,19 +172,13 @@ login	; Public ; Login
 	s password=$g(query("user%5Bpassword%5D"))
 	;
 	; Check user
-	i name="" d xmlLogin(name,"Sorry, could not log in with those details.",$$loginHelp) q
-	s uid=$g(^userx("nameOrEmail",name))
-	i uid="" d xmlLogin(name,"Sorry, could not log in with those details.",$$loginHelp) q
+	s ^session(%session,"uid")=0
+	s ^session(%session,"authenticated")=0
+	d loginLowLevel(name,password)
+	s ^session(%session,"authenticated")=%sess("authenticated") ; TODO: individual roles
+	s ^session(%session,"uid")=%sess("uid")
 	;
-	; Check password
-	i password="" d xmlLogin(name,"Sorry, could not log in with those details.",$$loginHelp) q
-	s sha256Password=$$dgst^openssl(password,"sha256")
-	;
-	s actualSha256Password=$g(^user(uid,"sha256Password"))
-	i actualSha256Password'=sha256Password d xmlLogin(name,"Sorry, could not log in with those details.",$$loginHelp) q
-	;
-	s ^session(%session,"authenticated")=1 ; TODO: individual roles
-	s ^session(%session,"uid")=uid
+	i ^session(%session,"authenticated")=0 d xmlLogin(name,"Sorry, could not log in with those details.",$$loginHelp) q
 	;
 	; If there is a redirect request then go there
 	s session=$g(^session(%session,"redirect"))
@@ -198,10 +191,27 @@ login	; Public ; Login
 	w !
 	q
 	
-	
 loginHelp()	; Help the user login
 	q "Please check that you have entered your email address or username and your password correctly.  Passwords are case sensitive.  If you cannot remember your password please follow the Lost your Password link to reset it."
 	
+loginLowLevel(name,password)
+	; Check user
+	s %sess("authenticated")=0
+	s %sess("uid")=0
+	i name="" q
+	s uid=$g(^userx("nameOrEmail",name))
+	i uid="" q
+	;
+	; Check password
+	i password="" q
+	s sha256Password=$$dgst^openssl(password,"sha256")
+	;
+	s actualSha256Password=$g(^user(uid,"sha256Password"))
+	i actualSha256Password'=sha256Password q
+	;
+	s %sess("authenticated")=1
+	s %sess("uid")=uid
+	q
 	
 xmlLogin(name,message,description)	; Return form contents and error details
 	d header^http("text/xml")
@@ -220,8 +230,7 @@ xmlLogin(name,message,description)	; Return form contents and error details
 	. w "</Message>",!
 	w "</Form>",!
 	q
-	
-	
+
 add(uid,name)	; Public ; Add a user (from external source, not an authorized account here)
 	;
 	i uid="" q
