@@ -111,8 +111,14 @@ addNode	; Private ; Check for nodes that need to be added
 	;
 	n id,user,oldUser,timestamp,oldTimestamp
 	n usersExists,users
+	n s1,s2
 	;
-	s id=$p($p(line,"id="_q,2),q,1)
+;	s id=$p($p(line,"id="_q,2),q,1)
+
+	set s1=$find(line,"id='")		; find the id key
+	set s2=$find(line,"'",s1)		; find the end of the id value after the id key
+	set id=$extract(line,s1,s2-2)		; extract the id from the line between the above two
+
 	i id="" q
 	;
 	; ; Patch to add version tag
@@ -156,7 +162,14 @@ addWay	 ; Private ; Check for ways that need to be added
 	;
 	n id,timestamp,oldTimestamp
 	;
-	s id=$p($p(line,"id="_q,2),q,1)
+	n s1,s2
+	;
+;	s id=$p($p(line,"id="_q,2),q,1)
+
+	set s1=$find(line,"id='")		; find the id key
+	set s2=$find(line,"'",s1)		; find the end of the id value after the id key
+	set id=$extract(line,s1,s2-2)		; extract the id from the line between the above two
+
 	i id="" q
 	;
 	; ; Patch to add version tag
@@ -197,7 +210,14 @@ addRelation	    ; Private ; Check for relations that need to be added
 	;
 	n id,timestamp,oldTimestamp
 	;
-	s id=$p($p(line,"id="_q,2),q,1)
+	n s1,s2
+	;
+;	s id=$p($p(line,"id="_q,2),q,1)
+
+	set s1=$find(line,"id='")		; find the id key
+	set s2=$find(line,"'",s1)		; find the end of the id value after the id key
+	set id=$extract(line,s1,s2-2)		; extract the id from the line between the above two
+
 	i id="" q
 	;
 	; ; Patch to add version tag
